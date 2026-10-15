@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reading Adventure — Grade 6</title>
+<style>
+:root{--ink:#24304a;--purple:#7657d5;--pink:#ff6b9a;--yellow:#ffd166;--blue:#65c7f7;--green:#7bdcb5;--paper:#fffdf7}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Trebuchet MS",Arial,sans-serif;color:var(--ink);background:linear-gradient(135deg,#c8f1ff,#f9d8ec 55%,#fff0bb);min-height:100vh}
+header{display:flex;justify-content:space-between;align-items:center;padding:12px 5vw;gap:12px}
+.brand{font-weight:900;letter-spacing:.4px}.pill{background:#fff9;border:2px solid #fff;border-radius:999px;padding:7px 13px;font-weight:800;font-size:.85rem}
+main{width:min(1000px,94vw);margin:10px auto 20px}
+.slide{display:none;background:var(--paper);border:4px solid white;border-radius:28px;box-shadow:0 16px 45px #4d4d7b22;padding:clamp(20px,4vw,42px);min-height:66vh;position:relative;overflow:hidden}
+.slide.active{display:block;animation:pop .25s ease}
+@keyframes pop{from{opacity:.4;transform:translateY(8px)}to{opacity:1;transform:none}}
+h1{font-size:clamp(2rem,6vw,4rem);line-height:1.02;margin:8px 0 14px}
+h2{font-size:clamp(1.5rem,4vw,2.4rem);margin:5px 0 14px}
+h3{margin:8px 0}
+p,li{font-size:clamp(1rem,2.1vw,1.2rem);line-height:1.5}
+.subtitle{font-size:1.25rem;max-width:650px}
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:20px;align-items:center}
+.illustration{font-size:clamp(5rem,14vw,10rem);text-align:center;filter:drop-shadow(0 8px 0 #e9e5ff)}
+.sticker{display:inline-block;background:var(--yellow);padding:7px 13px;border-radius:12px;transform:rotate(-2deg);font-weight:900}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.card{border-radius:18px;padding:15px;background:#f0edff;border:2px solid #e2dcff}
+.card:nth-child(2n){background:#e5f7ff;border-color:#c6edff}.card:nth-child(3n){background:#fff1d6;border-color:#ffe4a3}
+.bigword{font-weight:900;font-size:1.2rem}.small{font-size:.94rem}
+.tip{background:#e3fff2;border-left:6px solid #38b985;padding:12px 15px;border-radius:12px;margin:12px 0}
+.question{background:#f7f4ff;border:2px dashed #c6b8ff;padding:14px;border-radius:16px;margin:12px 0}
+button{font:inherit;font-weight:800;border:0;border-radius:14px;padding:11px 16px;cursor:pointer;background:var(--purple);color:white;box-shadow:0 4px 0 #4f3ba3;transition:transform .1s}
+button:active{transform:translateY(3px);box-shadow:0 1px 0 #4f3ba3}
+button.secondary{background:#fff;color:var(--ink);border:2px solid #ded8f7;box-shadow:none}
+button.answer{background:var(--green);color:#173e35;box-shadow:0 4px 0 #48a982}
+.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:12px}
+.answerbox{display:none;margin-top:10px;background:#e4fff0;padding:12px;border-radius:12px;font-weight:700}
+.answerbox.show{display:block}
+.answerbox.hint{background:#fff1d6;border-left:5px solid #efbd45}
+footer{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 2px}
+.progress{height:8px;background:#ffffffa8;border-radius:20px;overflow:hidden;flex:1}
+.bar{height:100%;width:0;background:var(--purple);transition:width .2s}
+.dots{display:flex;gap:5px;justify-content:center;flex-wrap:wrap;margin:12px}
+.dot{width:10px;height:10px;border-radius:50%;background:#fff9}.dot.on{background:var(--purple)}
+.wordbank{display:flex;gap:8px;flex-wrap:wrap}.word{background:white;border:2px solid #e6e1fa;border-radius:12px;padding:7px 10px;font-weight:700}
+.quiz-option{display:block;width:100%;text-align:left;margin:7px 0;background:white;color:var(--ink);border:2px solid #e1dcf5;box-shadow:none}
+.quiz-option.correct{background:#d9ffeb;border-color:#54c78f}.quiz-option.wrong{background:#ffe1e9;border-color:#ff7c9f}
+.score{font-size:1.4rem;font-weight:900;background:#fff1d6;padding:10px 14px;border-radius:14px;display:inline-block}
+.end{text-align:center;padding-top:8vh}.passage{white-space:pre-line;font:1rem/1.75 Georgia,serif;background:#fffefa;border:2px solid #efe7c8;border-radius:16px;padding:16px;max-height:48vh;overflow:auto}
+.select{font:inherit;border:2px solid #ded8f7;border-radius:10px;padding:7px;background:white}.matchrow{display:grid;grid-template-columns:1fr auto;align-items:center;gap:12px}
+details{background:#fff;border:2px solid #e6e1fa;border-radius:14px;padding:12px;margin:10px 0}
+@media(max-width:650px){.hero{grid-template-columns:1fr}.illustration{font-size:5.5rem;order:-1}.grid{grid-template-columns:1fr}.slide{min-height:72vh;padding:20px}.hide-mobile{display:none}header{padding:10px 4vw}}
+@media print{body{background:white}.slide{display:block;page-break-after:always;min-height:0;box-shadow:none;border:1px solid #ddd}.actions,footer,header{display:none}}
+</style></head><body>
+<header><div class="brand">🚀 READING ADVENTURE</div><div class="pill">ENGLISH • GRADE 6</div></header><main>
+<section class="slide active"><div class="hero"><div><span class="sticker">¡MODO EXAMEN!</span><h1>Reading<br><span style="color:#7657d5">Adventure</span></h1><p class="subtitle">¡Lee, encuentra pistas y gana estrellas! Una guía para preparar tu evaluación de inglés.</p><div class="tip">🕵️ <b>Tu misión:</b> no traduzcas todo. Busca palabras clave y vuelve al texto.</div><button onclick="go(1)">¡Empezar! ▶</button></div><div class="illustration">📚🧠✨</div></div></section>
+<section class="slide"><span class="sticker">POWER-UP #1</span><h2>🕵️ 4 trucos de detective</h2><div class="grid"><div class="card"><div class="bigword">1. Mira el título 👀</div><p>Te dice de qué trata el texto.</p></div><div class="card"><div class="bigword">2. Busca palabras 🔎</div><p>Encuentra nombres, lugares, fechas y palabras de la pregunta.</p></div><div class="card"><div class="bigword">3. Lee la frase completa 📖</div><p>No elijas por una sola palabra: revisa el contexto.</p></div><div class="card"><div class="bigword">4. Comprueba ✅</div><p>La respuesta debe estar en el texto o deducirse de él.</p></div></div><div class="tip">💡 <b>Why?</b> = ¿Por qué? <b>Where?</b> = ¿Dónde? <b>When?</b> = ¿Cuándo?</div></section>
+<section class="slide"><span class="sticker">READING #1</span><h2>🥞 Pancake Day</h2><div class="wordbank"><span class="word">pancake = panqueque</span><span class="word">race = carrera</span><span class="word">catch = atrapar</span><span class="word">before = antes</span></div><h3>📖 Reading passage · English</h3><div class="passage">In the UK, people celebrate Pancake Day. This festival takes place in February, on Shrove Tuesday. This is the day before Lent. Lent is an important time in the Christian calendar. It lasts 47 days. During Lent, people traditionally stop eating delicious food, like cakes and chocolate. So on Shrove Tuesday, they must eat up all the nice food in their cupboards. So they make pancakes, and they often eat them with lemon and sugar.
+
+Many British towns hold pancake races on Shrove Tuesday. People wear fancy dresses and run down the street with a pancake in a pan. They must throw the pancake in the air and catch it in the pan as they run. It must not fall on the ground.
+
+The tradition of pancake races started in Olney, Buckinghamshire. According to a story, a housewife made pancakes on Easter Sunday in 1445. Then she heard the church bells. She was worried because she was late for church, so she ran to church with her pan and pancake in her hand! Now, Olney’s pancake race is famous. All the competitors are housewives. They must toss the pancake three times as they run to the church. Then they must serve their pancake to the bell-ringer and receive a kiss from him.
+
+Westminster School, an old boys’ school in London, has a different pancake tradition. The school cook makes a huge pancake and throws it over a five-metre high bar. The schoolboys run to take a piece of the pancake. The boy with the biggest piece of pancake wins some money!
+
+These days, few British people give up delicious food for Lent. But most people eat pancakes on Pancake Day.</div><div id="pancakeQuestions"></div></section>
+<section class="slide"><span class="sticker">READING #2</span><h2>🦃 Thanksgiving</h2><div class="wordbank"><span class="word">turkey = pavo</span><span class="word">parade = desfile</span><span class="word">harvest = cosecha</span></div><div class="passage">Thanksgiving is celebrated in the USA on the 4th Thursday of November. The tradition comes from the first people to arrive from England to North America. The Native Americans taught them to grow food and hunt, and the pilgrims invited the Native Americans for dinner after the harvest. This was the first Thanksgiving in common folklore.
+
+Nowadays, Thanksgiving is the country’s largest secular holiday and represents a time when friends and family get together for a large turkey dinner. Traditionally, people make stuffing, mashed potatoes, cranberry sauce, sweet potatoes, and pumpkin pie to go with the huge roast turkey.
+
+In the morning, there is a massive parade in NYC called the Macy’s Thanksgiving Day parade, which has a lot of giant balloons, famous people, and marching bands. In the afternoon, people watch American football games. There is usually one game in the afternoon and one in the evening.
+
+Thanksgiving also marks the unofficial beginning of the Holiday season in America. The Friday after Thanksgiving, which is the following day, is Black Friday and has a lot of crazy sales. Also, it is traditional to start putting up Christmas decorations after Thanksgiving if your family celebrates Christmas.</div><div id="thankQuestions"></div></section>
+<section class="slide"><span class="sticker">READING #3</span><h2>🇬🇧 Visiting London</h2><p>Read the text about visiting London with young children. Then choose the best title (A–F) for each paragraph.</p><div id="londonPassages"></div><div class="grid"><div class="card"><b>A.</b> Visit the city when children sleep</div><div class="card"><b>B.</b> Learn and play at the museum</div><div class="card"><b>C.</b> Get your children ready for the visit</div><div class="card"><b>D.</b> Plan what to see and when</div><div class="card"><b>E.</b> Decide spending money</div><div class="card"><b>F.</b> Move around on public transport</div></div><div id="londonMatch"></div><div class="actions"><button class="secondary" onclick="reveal('londonHint')">Ver pista 💡</button><button class="answer" onclick="reveal('londonAnswers')">Ver respuestas</button></div><div id="londonHint" class="answerbox hint">Busca la idea principal de cada párrafo: planificación, preparación, transporte, gastos, museos o actividades para adultos.</div><div id="londonAnswers" class="answerbox">⭐ 1–D · 2–C · 3–F · 4–E · 5–B · 6–A</div></section>
+<section class="slide"><span class="sticker">READING #4</span><h2>🛍️ Where are you going to shop?</h2><div class="wordbank"><span class="word">next to = al lado de</span><span class="word">toy shop = juguetería</span><span class="word">bakery = panadería</span><span class="word">present = regalo</span></div><div class="passage">Hi Karen, thanks for your message. Welcome to the neighbourhood! Of course I can help you find the shops you need, it’s not a problem!
+
+This weekend, I’m going to buy some clothes for my children, so you can come with me. There’s a shop near my house. It sells good quality clothes and they’re not expensive. They sell shoes too, but they cost a lot of money. They’re open every day from 9 am until 6 pm, but they close at 3 pm on Sundays.
+
+For your cat or a dog, you can find anything you need at the pet shop next to the school. I’m going to get some food for my cat there this afternoon. You can come with me. I also need to buy some eggs and vegetables for our dinner. The grocery store is very close to the pet shop. I’ll show you where.
+
+Tomorrow, we are going to visit the toy shop at the end of town, but it’s not far. I’m going to buy a present for my daughter. It’s her birthday. Do you want to come with us? After that, we can go to the new bakery for some fresh bread and some cakes!
+
+About school materials for your children, next week, I’m going to buy some notebooks and pens for my son at a stationery store not far from your house. We can go together if you want. Is Tuesday OK for you? I’m busy in the morning, but I’m free in the afternoon. Let me know.
+
+See you soon!
+Maria</div><div id="shoppingQuestions"></div><div class="tip">🧩 <b>Inferir</b> = usar pistas del texto para descubrir algo que no aparece exactamente con esas palabras.</div></section>
+<section class="slide"><span class="sticker">USE OF ENGLISH #1</span><h2>🌙 The Moon</h2><p>Read the text. Choose the right words and write them in the blanks.</p><div class="passage">The moon is beautiful <b>(Example: in / with / at)</b> night. Sometimes the moon looks big and round above us. But often (1) ______ is smaller and thinner, like a banana. A lot of children want to go there but they (2) ______. It isn’t (3) ______ very good place. It’s sometimes very cold (4) ______ sometimes very hot. There is no grass and there isn’t (5) ______ food. There are no animals and no people.</div><div class="grid"><div class="card"><b>1.</b> they · it · she</div><div class="card"><b>2.</b> doesn’t · aren’t · can’t</div><div class="card"><b>3.</b> a · the · this</div><div class="card"><b>4.</b> because · and · only</div><div class="card"><b>5.</b> any · no · one</div></div><div class="actions"><button class="secondary" onclick="reveal('moonHint')">Pista 💡</button><button class="answer" onclick="reveal('moonAnswer')">Respuestas</button></div><div id="moonHint" class="answerbox hint">Piensa en el pronombre para “the moon”, en “can’t” para no poder y en “any” en una oración negativa.</div><div id="moonAnswer" class="answerbox">Example at · 1 it · 2 can’t · 3 a · 4 and · 5 any</div></section>
+<section class="slide"><span class="sticker">USE OF ENGLISH #2</span><h2>⚽ Sport</h2><p>Read the text. Choose the right words and write them in the blanks.</p><div class="passage">There are a lot <b>(Example: with / for / of)</b> different kinds of sport. For example, there are ball games. In football you (1) ______ to kick the ball, but in tennis you hit it, and in basketball you throw and bounce it. Some people (2) ______ water sports. For example, they like swimming (3) ______ sailing a boat. In some sports you run and jump, but in some, like fishing, you (4) ______ move a lot. Most children do sport at school, and it is very (5) ______ for you.</div><div class="grid"><div class="card"><b>1.</b> has · have · had</div><div class="card"><b>2.</b> enjoys · enjoy · enjoying</div><div class="card"><b>3.</b> or · because · than</div><div class="card"><b>4.</b> doesn’t · didn’t · don’t</div><div class="card"><b>5.</b> good · better · best</div></div><div class="actions"><button class="secondary" onclick="reveal('sportHint')">Pista 💡</button><button class="answer" onclick="reveal('sportAnswer')">Respuestas</button></div><div id="sportHint" class="answerbox hint">“You have to”; “some people” es plural; “swimming or sailing”; “you don’t”; “good for you”.</div><div id="sportAnswer" class="answerbox">Example of · 1 have · 2 enjoy · 3 or · 4 don’t · 5 good</div></section>
+<section class="slide"><span class="sticker">USE OF ENGLISH #3</span><h2>🐾 Choosing a Pet</h2><p>Read the text. Choose the right words and write them in the blanks.</p><div class="passage">Choosing the right pet is difficult. You <b>(Example: have / must / can)</b> to think very carefully! Dogs like being with people and need to (1) ______ for long walks. They are good pets for people (2) ______ live in the countryside.
+
+Cats are happy in towns, but it’s good for them to have a garden to play (3) ______ run in. (4) ______ people love smaller animals like mice, snakes or spiders!
+
+When you choose a pet, think (5) ______ these questions: What kind of home does it need? What does it like to eat? And where does it like to play?</div><div class="grid"><div class="card"><b>1.</b> going · go · went</div><div class="card"><b>2.</b> who · which · when</div><div class="card"><b>3.</b> and · than · because</div><div class="card"><b>4.</b> A · The · Some</div><div class="card"><b>5.</b> about · after · above</div></div><div class="actions"><button class="secondary" onclick="reveal('petHint')">Pista 💡</button><button class="answer" onclick="reveal('petAnswer')">Respuestas</button></div><div id="petHint" class="answerbox hint">“need to go”; “people who”; “and run”; “Some people”; “think about”.</div><div id="petAnswer" class="answerbox">Example have · 1 go · 2 who · 3 and · 4 Some · 5 about</div></section>
+<section class="slide" id="quizslide"><span class="sticker">MINI GAME</span><h2>🎮 ¡Reto de 5 preguntas!</h2><p>Elige una respuesta y mira cómo te va. ¡Puedes volver a intentarlo!</p><div id="quiz"></div><div class="actions"><button onclick="nextQ()">Siguiente ➜</button><button class="secondary" onclick="restartQuiz()">Reiniciar ↻</button></div><p class="score" id="score">⭐ Puntos: 0 / 5</p></section>
+<section class="slide"><div class="end"><div class="illustration">🏆🌟🎉</div><h1>¡Lo lograste!</h1><p class="subtitle">Busca palabras clave, lee el contexto, piensa en la idea principal y revisa tus respuestas.</p><p><b>You can do it!</b> 💪</p><button onclick="go(0)">Volver al inicio ↺</button></div></section>
+<footer><button class="secondary" onclick="prev()">◀ Atrás</button><div class="progress"><div class="bar" id="bar"></div></div><span id="counter" class="pill">1 / 14</span><button onclick="next()">Siguiente ▶</button></footer><div class="dots" id="dots"></div></main>
+<script>
+const slides=[...document.querySelectorAll('.slide')];let current=0;
+function go(n){current=Math.max(0,Math.min(slides.length-1,n));slides.forEach((s,j)=>s.classList.toggle('active',j===current));document.getElementById('counter').textContent=(current+1)+' / '+slides.length;document.getElementById('bar').style.width=((current+1)/slides.length*100)+'%';document.getElementById('dots').innerHTML=slides.map((_,j)=>'<span class="dot '+(j===current?'on':'')+'"></span>').join('');window.scrollTo({top:0,behavior:'smooth'})}
+function next(){go(current+1)}function prev(){go(current-1)}function reveal(id){document.getElementById(id).classList.toggle('show')}
+function qa(id,q,h,a){return '<div class="question"><b>'+q+'</b><div class="actions"><button class="secondary" onclick="reveal(\'hint-'+id+'\')">Ver pista 💡</button><button class="answer" onclick="reveal(\'answer-'+id+'\')">Ver respuesta</button></div><div id="hint-'+id+'" class="answerbox hint">'+h+'</div><div id="answer-'+id+'" class="answerbox">'+a+'</div></div>'}
+document.getElementById('pancakeQuestions').innerHTML=[
+qa('p1','1. Pancake Day is the first day of Lent. True / False. Why?','Shrove Tuesday is the day before Lent.','❌ FALSE. It is the day before Lent.'),
+qa('p2','2. People often eat pancakes with lemon and sugar. True / False. Why?','Find what people eat the pancakes with.','✅ TRUE. They often eat them with lemon and sugar.'),
+qa('p3','3. Pancake races are a tradition in many British towns. True / False. Why?','Look for the sentence “Many British towns hold pancake races”.','✅ TRUE. Many British towns hold pancake races.'),
+qa('p4','4. The winner is the first person to make and eat a pancake. True / False. Why?','Compare this with Westminster School’s pancake tradition.','❌ FALSE. The boy with the biggest piece of pancake wins money.')
+].join('');
+document.getElementById('thankQuestions').innerHTML=[
+qa('t1','1. When and where is Thanksgiving celebrated?','Find the date and place in the first sentence.','In the USA on the 4th Thursday of November.'),
+qa('t2','2. What did the Native Americans teach the pilgrims?','Find “taught them to...”.','They taught them to grow food and hunt.'),
+qa('t3','3. What food do people traditionally eat for Thanksgiving dinner?','Look for the list after “Traditionally”.','Roast turkey, stuffing, mashed potatoes, cranberry sauce, sweet potatoes, and pumpkin pie.'),
+qa('t4','4. What do people usually do on Thanksgiving Day and during the days after Thanksgiving?','Separate the activities on Thanksgiving Day from those on the following days.','They watch the Macy’s parade in the morning and American football in the afternoon/evening. The next day is Black Friday; some families put up Christmas decorations after Thanksgiving.')
+].join('');
+const london=[
+'First, decide what you want to visit. Don’t forget to check which days are less busy. Usually, there are more tourists at the weekend. Give yourself enough time to visit each place, and remember to include time to travel between them.',
+'Show pictures or videos of the places you’ll visit to your children. This is a good way to get them interested in the trip. It also keeps them busy while you are travelling there.',
+'Think about how you’ll go from one place to the other. The easiest way to travel around London is on “the tube” – it’s a train that goes underground. Buses are the cheapest way to travel. If you need help with directions, ask anyone around you. People in London don’t smile a lot, but they’re happy to help.',
+'There’s a lot to do in London for everyone. Your children will definitely love Hamley’s, the biggest toy shop in the world. It has seven floors full of things to see, do, and buy. To avoid any problems, tell your children how much money they can spend before you go in.',
+'Children don’t usually like museums, but the Natural History Museum and the Science Museum are great fun. Both have free activities for children of all ages – they can learn while they play. They are usually busy when the weather is bad. Go when the weather is good, when people want to be outside.',
+'Your kids will enjoy London. What about you? If you are interested in ancient history, visit the British Museum in the afternoon, while the children are sleeping. If you love animals, the Sea Life Aquarium and London Zoo are great, but family tickets can be expensive.'
+];
+document.getElementById('londonPassages').innerHTML='<h3>Tips for visiting London with young children</h3>'+london.map((p,j)=>'<div class="card"><b>Paragraph '+(j+1)+'</b><p>'+p+'</p></div>').join('');
+document.getElementById('londonMatch').innerHTML=london.map((_,j)=>'<div class="question matchrow"><b>Paragraph '+(j+1)+'</b><select class="select"><option>Choose A–F</option>'+['A','B','C','D','E','F'].map(x=>'<option>'+x+'</option>').join('')+'</select></div>').join('');
+function mc(id,q,opts,ans,hint){return '<div class="question"><b>'+q+'</b>'+opts.map((x,j)=>'<label style="display:block;margin:7px"><input type="radio" name="'+id+'" value="'+String.fromCharCode(65+j)+'"> '+String.fromCharCode(65+j)+'. '+x+'</label>').join('')+'<div class="actions"><button class="secondary" onclick="reveal(\'hint-'+id+'\')">Pista 💡</button><button class="answer" onclick="reveal(\'answer-'+id+'\')">Respuesta ✅</button></div><div id="hint-'+id+'" class="answerbox hint">'+hint+'</div><div id="answer-'+id+'" class="answerbox">'+ans+'</div></div>'}
+document.getElementById('shoppingQuestions').innerHTML=[
+mc('s1','1. Where is the pet shop?',['Next to the school.','Near Maria’s house.','At the end of town.','Near Karen’s house.'],'A. Next to the school.','Find the words “pet shop next to the school”.'),
+mc('s2','2. Why is Maria going to the toy shop tomorrow?',['Because she needs to buy school materials.','Because she wants to buy a present for her daughter.','Because she wants to buy food for her cat.','Because she needs to buy clothes for her children.'],'B. Because she wants to buy a present for her daughter.','Her daughter has a birthday.'),
+mc('s3','3. What can we infer about Maria and Karen?',['They are planning to go shopping together several times.','They work together at the same school.','They are going to buy a house together.','They do not know the neighbourhood very well.'],'A. They are planning to go shopping together several times.','Maria invites Karen this weekend, tomorrow, and next week.')
+].join('');
+const quizData=[
+{q:'Pancake Day is the first day of Lent.',a:['True','False','We do not know'],c:1,why:'Shrove Tuesday is the day before Lent.'},
+{q:'Thanksgiving is celebrated in…',a:['The UK','The USA','China'],c:1,why:'The reading says it is celebrated in the USA.'},
+{q:'The easiest way to travel around London is…',a:['By bus','The tube','By car'],c:1,why:'The London reading names the tube.'},
+{q:'Why is Maria going to the toy shop?',a:['To buy a present for her daughter','To buy cat food','To buy school pens'],c:0,why:'It is her daughter’s birthday.'},
+{q:'Choose the correct sentence.',a:['They enjoys sport.','They enjoy sport.','They enjoying sport.'],c:1,why:'With “they”, use enjoy.'}
+];let qi=0,score=0,answered=false;
+function renderQ(){const q=quizData[qi];answered=false;document.getElementById('quiz').innerHTML='<div class="question"><h3>'+(qi+1)+'. '+q.q+'</h3>'+q.a.map((a,j)=>'<button class="quiz-option" onclick="answerQ('+j+')">'+String.fromCharCode(65+j)+'. '+a+'</button>').join('')+'<div id="feedback" class="answerbox"></div></div>';document.getElementById('score').textContent='⭐ Puntos: '+score+' / 5'}
+function answerQ(j){if(answered)return;answered=true;const q=quizData[qi];document.querySelectorAll('.quiz-option').forEach((b,k)=>{if(k===q.c)b.classList.add('correct');else if(k===j)b.classList.add('wrong')});if(j===q.c)score++;const f=document.getElementById('feedback');f.textContent=(j===q.c?'¡Correcto! 🎉 ':'¡Casi! 💪 ')+q.why;f.classList.add('show');document.getElementById('score').textContent='⭐ Puntos: '+score+' / 5'}
+function nextQ(){if(qi<quizData.length-1){qi++;renderQ()}else{document.getElementById('quiz').innerHTML='<div class="card"><h3>¡Reto terminado! 🎉</h3><p>Tu resultado: '+score+' de 5.</p><p>'+(score>=4?'¡Excelente trabajo!':'Repasa las pistas e inténtalo de nuevo.')+'</p></div>'}}
+function restartQuiz(){qi=0;score=0;renderQ()}go(0);renderQ();
+</script></main></body></html>
